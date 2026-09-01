@@ -1,1 +1,799 @@
-local _a=game:GetService(string.char(80,108,97,121,101,114,115))local _b=game:GetService(string.char(82,117,110,83,101,114,118,105,99,101))local _c=game:GetService(string.char(85,115,101,114,73,110,112,117,116,83,101,114,118,105,99,101))local _d=game:GetService(string.char(86,105,114,116,117,97,108,73,110,112,117,116,77,97,110,97,103,101,114))local _e=game:GetService(string.char(84,119,101,101,110,83,101,114,118,105,99,101))local _f=game:GetService(string.char(72,116,116,112,83,101,114,118,105,99,101))local _g=game:GetService(string.char(82,101,112,108,105,99,97,116,101,100,83,116,111,114,97,103,101))local _h=_a.LocalPlayer local _i=_h:WaitForChild(string.char(80,108,97,121,101,114,71,117,105))local function _j()return string.char(85,73,95)..string.gsub(_f:GenerateGUID(false),string.char(45),""):sub(1,12)end local _k=_j()local _l=_j()if _i:FindFirstChild(_k)then _i[_k]:Destroy()end if _i:FindFirstChild(_l)then _i[_l]:Destroy()end local _m=Instance.new(string.char(83,99,114,101,101,110,71,117,105))_m.Name=_k _m.ResetOnSpawn=false _m.IgnoreGuiInset=true pcall(function()if gethui then _m.Parent=gethui()elseif syn and syn.protect_gui then syn.protect_gui(_m)_m.Parent=_i else _m.Parent=_i end end)local _n=string.char(104,116,116,115,58,47,47,122,101,110,45,107,101,121,45,97,102,105,46,101,97,48,48,54,54,55,55,55,46,119,111,114,107,101,114,115,46,100,101,118,47,118,97,108,105,100,97,116,101)local function _o(_p)local _q,_r=pcall(function()return game:HttpGet(_n..string.char(63,107,101,121,61).._f:UrlEncode(_p))end)if not _q then return false,string.char(114,101,113,117,101,115,116,95,102,97,105,108,101,100)end local _s,_t=pcall(function()return _f:JSONDecode(_r)end)if not _s or type(_t)~=string.char(116,97,98,108,101)then return false,string.char(105,110,118,97,108,105,100,95,106,115,111,110)end if _t.valid==true then return true,_t end return false,_t.error or string.char(117,110,107,110,111,119,110,95,101,114,114,111,114)end local _u=Instance.new(string.char(70,114,97,109,101))_u.Size=UDim2.new(0,360,0,200)_u.Position=UDim2.new(0.5,-180,0.5,-100)_u.BackgroundColor3=Color3.fromRGB(18,18,18)_u.BackgroundTransparency=0.15 _u.BorderSizePixel=0 _u.Parent=_m Instance.new(string.char(85,73,67,111,114,110,101,114),_u).CornerRadius=UDim.new(0,6)local _v=Instance.new(string.char(85,73,83,116,114,111,107,101))_v.Color=Color3.fromRGB(40,40,40)_v.Transparency=0.4 _v.Thickness=1 _v.Parent=_u local _w=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_w.Size=UDim2.new(1,0,0,35)_w.Position=UDim2.new(0,0,0,15)_w.BackgroundTransparency=1 _w.TextColor3=Color3.fromRGB(220,220,220)_w.TextSize=16 _w.Font=Enum.Font.GothamBold _w.Text=string.char(65,85,84,72,69,78,84,73,67,65,84,73,79,78)_w.Parent=_u local _x=Instance.new(string.char(84,101,120,116,66,111,120))_x.Size=UDim2.new(0,310,0,38)_x.Position=UDim2.new(0.5,-155,0,65)_x.BackgroundColor3=Color3.fromRGB(25,25,25)_x.BackgroundTransparency=0.3 _x.TextColor3=Color3.fromRGB(240,240,240)_x.Text=""_x.PlaceholderText=string.char(101,110,116,101,114,32,121,111,117,114,32,107,101,121,32,104,101,114,101)_x.PlaceholderColor3=Color3.fromRGB(100,100,100)_x.TextSize=13 _x.Font=Enum.Font.Gotham _x.ClearTextOnFocus=false _x.Parent=_u Instance.new(string.char(85,73,67,111,114,110,101,114),_x).CornerRadius=UDim.new(0,4)local _y=Instance.new(string.char(85,73,83,116,114,111,107,101))_y.Color=Color3.fromRGB(45,45,45)_y.Transparency=0.5 _y.Parent=_x local _z=Instance.new(string.char(84,101,120,116,66,117,116,116,111,110))_z.Size=UDim2.new(0,310,0,34)_z.Position=UDim2.new(0.5,-155,0,115)_z.BackgroundColor3=Color3.fromRGB(0,140,255)_z.BackgroundTransparency=0.2 _z.TextColor3=Color3.fromRGB(255,255,255)_z.TextSize=13 _z.Font=Enum.Font.GothamBold _z.Text=string.char(83,117,98,109,105,116,32,75,101,121)_z.Parent=_u Instance.new(string.char(85,73,67,111,114,110,101,114),_z).CornerRadius=UDim.new(0,4)local _A=Instance.new(string.char(84,101,120,116,66,117,116,116,111,110))_A.Size=UDim2.new(0,310,0,28)_A.Position=UDim2.new(0.5,-155,0,160)_A.BackgroundColor3=Color3.fromRGB(26,26,26)_A.BackgroundTransparency=0.5 _A.TextColor3=Color3.fromRGB(160,160,160)_A.TextSize=11 _A.Font=Enum.Font.GothamMedium _A.Text=string.char(71,101,116,32,65,99,99,101,115,115,32,75,101,121)_A.Parent=_u Instance.new(string.char(85,73,67,111,114,110,101,114),_A).CornerRadius=UDim.new(0,4)_A.MouseButton1Click:Connect(function()pcall(function()setclipboard(string.char(104,116,116,115,58,47,47,100,105,115,99,111,112,100,46,103,103,47,106,97,117,87,54,66,67,104,99,52))end)_A.Text=string.char(67,111,112,105,101,100,33)task.wait(1.5)_A.Text=string.char(71,101,116,32,65,99,99,101,115,115,32,75,101,121)end)local _B=Instance.new(string.char(70,114,97,109,101))_B.Size=UDim2.new(0,360,0,180)_B.Position=UDim2.new(0.5,-180,0.5,-90)_B.BackgroundColor3=Color3.fromRGB(18,18,18)_B.BackgroundTransparency=0.15 _B.BorderSizePixel=0 _B.Visible=false _B.Parent=_m Instance.new(string.char(85,73,67,111,114,110,101,114),_B).CornerRadius=UDim.new(0,6)local _C=Instance.new(string.char(85,73,83,116,114,111,107,101))_C.Color=Color3.fromRGB(40,40,40)_C.Transparency=0.4 _C.Thickness=1 _C.Parent=_B local _D=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_D.Size=UDim2.new(1,0,0,40)_D.Position=UDim2.new(0,0,0,30)_D.BackgroundTransparency=1 _D.TextColor3=Color3.fromRGB(240,240,240)_D.TextSize=22 _D.Font=Enum.Font.GothamBold _D.Text=string.char(67,79,82,69,32,77,79,68,85,76,69)_D.Parent=_B local _E=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_E.Size=UDim2.new(1,0,0,20)_E.Position=UDim2.new(0,0,0,75)_E.BackgroundTransparency=1 _E.TextColor3=Color3.fromRGB(140,140,140)_E.TextSize=12 _E.Font=Enum.Font.Gotham _E.Text=string.char(76,111,97,100,105,110,103,32,99,111,109,112,111,110,101,110,116,115,46,46,46)_E.Parent=_B local _F=Instance.new(string.char(70,114,97,109,101))_F.Size=UDim2.new(0,300,0,6)_F.Position=UDim2.new(0.5,-150,0,120)_F.BackgroundColor3=Color3.fromRGB(25,25,25)_F.BorderSizePixel=0 _F.Parent=_B Instance.new(string.char(85,73,67,111,114,110,101,114),_F).CornerRadius=UDim.new(1,0)local _H=Instance.new(string.char(70,114,97,109,101))_H.Size=UDim2.new(0,0,1,0)_H.BackgroundColor3=Color3.fromRGB(0,140,255)_H.BorderSizePixel=0 _H.Parent=_F Instance.new(string.char(85,73,67,111,114,110,101,114),_H).CornerRadius=UDim.new(1,0)local _I=Instance.new(string.char(70,114,97,109,101))_I.Size=UDim2.new(0,500,0,320)_I.Position=UDim2.new(0.5,-250,0.4,-160)_I.BackgroundColor3=Color3.fromRGB(22,22,22)_I.BackgroundTransparency=0.1 _I.BorderSizePixel=0 _I.Active=true _I.Draggable=true _I.Visible=false _I.Parent=_m Instance.new(string.char(85,73,67,111,114,110,101,114),_I).CornerRadius=UDim.new(0,6)local _J=Instance.new(string.char(85,73,83,116,114,111,107,101))_J.Color=Color3.fromRGB(45,45,45)_J.Transparency=0.3 _J.Thickness=1 _J.Parent=_I _z.MouseButton1Click:Connect(function()local _K=_x.Text if _K==""then return end _z.Text=string.char(86,97,108,105,100,97,116,105,110,103,46,46,46)local _L,_M=_o(_K)if _L then _z.Text=string.char(83,117,99,99,101,115,115,33)task.wait(0.4)_u:Destroy()_B.Visible=true _e:Create(_H,TweenInfo.new(1.5,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Size=UDim2.new(1,0,1,0)}):Play()task.delay(1.5,function()_B:Destroy()_I.Visible=true end)else _z.Text=string.char(83,117,98,109,105,116,32,75,101,121)_x.Text=""_x.PlaceholderText=string.char(105,110,118,97,108,105,100,32,107,101,121)task.wait(2)_x.PlaceholderText=string.char(101,110,116,101,114,32,121,111,117,114,32,107,101,121,32,104,101,114,101)end end)local _N=Instance.new(string.char(70,114,97,109,101))_N.Size=UDim2.new(1,0,0,34)_N.BackgroundColor3=Color3.fromRGB(16,16,16)_N.BackgroundTransparency=0.3 _N.BorderSizePixel=0 _N.Parent=_I Instance.new(string.char(85,73,67,111,114,110,101,114),_N).CornerRadius=UDim.new(0,6)local _O=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_O.Size=UDim2.new(0,350,1,0)_O.Position=UDim2.new(0,12,0,0)_O.BackgroundTransparency=1 _O.TextColor3=Color3.fromRGB(230,230,230)_O.TextSize=13 _O.Font=Enum.Font.GothamBold _O.Text=string.char(67,79,82,69,32,83,89,83,84,69,77,32,45,32,118,48,46,52,46,52,32,40,68,121,110,97,109,105,99,32,84,114,105,103,103,101,114,41)_O.TextXAlignment=Enum.TextXAlignment.Left _O.Parent=_N local _P=Instance.new(string.char(84,101,120,116,66,117,116,116,111,110))_P.Size=UDim2.new(0,34,0,34)_P.Position=UDim2.new(1,-34,0,0)_P.BackgroundTransparency=1 _P.TextColor3=Color3.fromRGB(180,180,180)_P.TextSize=14 _P.Font=Enum.Font.GothamBold _P.Text=string.char(88)_P.Parent=_N _P.MouseButton1Click:Connect(function()_m:Destroy()end)local _Q=Instance.new(string.char(70,114,97,109,101))_Q.Size=UDim2.new(0,130,1,-44)_Q.Position=UDim2.new(0,8,0,38)_Q.BackgroundColor3=Color3.fromRGB(18,18,18)_Q.BackgroundTransparency=0.3 _Q.BorderSizePixel=0 _Q.Parent=_I Instance.new(string.char(85,73,67,111,114,110,101,114),_Q).CornerRadius=UDim.new(0,4)local _R=Instance.new(string.char(70,114,97,109,101))_R.Size=UDim2.new(1,-150,1,-44)_R.Position=UDim2.new(0,142,0,38)_R.BackgroundTransparency=1 _R.Parent=_I local _S=Instance.new(string.char(70,114,97,109,101))_S.Size=UDim2.new(1,0,1,0)_S.BackgroundTransparency=1 _S.Visible=true _S.Parent=_R local _T=Instance.new(string.char(70,114,97,109,101))_T.Size=UDim2.new(1,0,1,0)_T.BackgroundTransparency=1 _T.Visible=false _T.Parent=_R local _U=Instance.new(string.char(70,114,97,109,101))_U.Size=UDim2.new(1,0,1,0)_U.BackgroundTransparency=1 _U.Visible=false _U.Parent=_R local function _V(_W,_X)local _Y=Instance.new(string.char(84,101,120,116,66,117,116,116,111,110))_Y.Size=UDim2.new(0.9,0,0,32)_Y.Position=UDim2.new(0.05,0,0,_X)_Y.BackgroundColor3=Color3.fromRGB(24,24,24)_Y.BackgroundTransparency=0.3 _Y.TextColor3=Color3.fromRGB(160,160,160)_Y.TextSize=12 _Y.Font=Enum.Font.Gotham _Y.Text=_W _Y.Parent=_Q Instance.new(string.char(85,73,67,111,114,110,101,114),_Y).CornerRadius=UDim.new(0,4)return _Y end local _Z=_V(string.char(77,97,105,110),10)local _aa=_V(string.char(86,105,115,117,97,108,115),48)local _ba=_V(string.char(83,101,116,116,105,110,103,115),86)local function _ca(_da,_W,_X,_ea)local _Y=Instance.new(string.char(84,101,120,116,66,117,116,116,111,110))_Y.Size=UDim2.new(0.95,0,0,34)_Y.Position=UDim2.new(0,0,0,_X)_Y.BackgroundColor3=_ea and Color3.fromRGB(140,30,30)or Color3.fromRGB(26,26,26)_Y.BackgroundTransparency=0.3 _Y.TextColor3=Color3.fromRGB(220,220,220)_Y.TextSize=12 _Y.Font=Enum.Font.GothamMedium _Y.Text=_W _Y.Parent=_da Instance.new(string.char(85,73,67,111,114,110,101,114),_Y).CornerRadius=UDim.new(0,4)return _Y end local _fa=_ca(_S,string.char(65,117,116,111,32,77,111,100,117,108,101,58,32,79,70,70),10,false)local _ga=_ca(_S,string.char(83,112,97,109,32,75,101,121,32,40,72,111,108,100,32,84,41,58,32,79,70,70),52,false)local _ha=_ca(_T,string.char(82,105,110,103,32,86,105,115,117,97,108,58,32,79,70,70),10,false)local _ia=_ca(_T,string.char(69,83,80,32,66,111,120,101,115,58,32,79,70,70),52,false)local _ja=_ca(_T,string.char(69,83,80,32,78,97,109,101,115,58,32,79,70,70),94,false)local _ka=_ca(_T,string.char(69,83,80,32,68,105,115,116,97,110,99,101,58,32,79,70,70),136,false)local _la=_ca(_U,string.char(84,111,103,103,108,101,32,75,101,121,58,32,91,32,82,105,103,104,116,83,104,105,102,116,32,93),10,false)local _ma=_ca(_U,string.char(85,110,108,111,97,100,32,83,99,112,105,112,116),52,true)local function _na(_oa)_S.Visible=(_oa==string.char(109,97,105,110))_T.Visible=(_oa==string.char(118,105,115,117,97,108,115))_U.Visible=(_oa==string.char(115,101,116,116,105,110,103,115))_Z.BackgroundColor3=(_oa==string.char(109,97,105,110))and Color3.fromRGB(0,140,255)or Color3.fromRGB(24,24,24)_Z.TextColor3=(_oa==string.char(109,97,105,110))and Color3.fromRGB(255,255,255)or Color3.fromRGB(160,160,160)_aa.BackgroundColor3=(_oa==string.char(118,105,115,117,97,108,115))and Color3.fromRGB(0,140,255)or Color3.fromRGB(24,24,24)_aa.TextColor3=(_oa==string.char(118,105,115,117,97,108,115))and Color3.fromRGB(255,255,255)or Color3.fromRGB(160,160,160)_ba.BackgroundColor3=(_oa==string.char(115,101,116,116,105,110,103,115))and Color3.fromRGB(0,140,255)or Color3.fromRGB(24,24,24)_ba.TextColor3=(_oa==string.char(115,101,116,116,105,110,103,115))and Color3.fromRGB(255,255,255)or Color3.fromRGB(160,160,160)end _Z.BackgroundColor3=Color3.fromRGB(0,140,255)_Z.TextColor3=Color3.fromRGB(255,255,255)_Z.MouseButton1Click:Connect(function()_na(string.char(109,97,105,110))end)_aa.MouseButton1Click:Connect(function()_na(string.char(118,105,115,117,97,108,115))end)_ba.MouseButton1Click:Connect(function()_na(string.char(115,101,116,116,105,110,103,115))end)local _pa=Enum.KeyCode.RightShift local _qa=false _la.MouseButton1Click:Connect(function()_qa=true _la.Text=string.char(80,114,101,115,115,32,97,110,121,32,107,101,121,46,46,46)end)_c.InputBegan:Connect(function(_ra,_sa)if _qa then if _ra.UserInputType==Enum.UserInputType.Keyboard then _pa=_ra.KeyCode _la.Text=string.char(84,111,103,103,108,101,32,75,101,121,58,32,91,32)..tostring(_pa.Name)..string.char(32,93)_qa=false end return end if _ra.KeyCode==_pa and not _sa then _I.Visible=not _I.Visible end end)local _ta=Instance.new(string.char(70,111,108,100,101,114))_ta.Name=_j()local _ua=32 local _va={}for _wa=1,_ua do local _xa=Instance.new(string.char(80,97,114,114))_xa.Name=string.char(83,101,103)_xa.Size=Vector3.new(0.6,0.2,1.2)_xa.Anchored=true _xa.CanCollide=false _xa.Material=Enum.Material.Neon _xa.Color=Color3.fromRGB(0,140,255)_xa.Transparency=0.3 _xa.Parent=_ta table.insert(_va,_xa)end local _ya=Instance.new(string.char(83,99,114,101,101,110,71,117,105))_ya.Name=_l _ya.ResetOnSpawn=false _ya.IgnoreGuiInset=true pcall(function()if gethui then _ya.Parent=gethui()else _ya.Parent=_i end end)local _za=false local _Aa=false local _Ba=false local _Ca={}local function _Da(_Ea)if _Ea==_h then return end local _Fa=Instance.new(string.char(70,111,108,100,101,114))_Fa.Name=_j()_Fa.Parent=_ya local _Ga=Instance.new(string.char(70,114,97,109,101))_Ga.BackgroundTransparency=1 _Ga.Visible=false _Ga.Parent=_Fa local _Ha=Instance.new(string.char(85,73,83,116,114,111,107,101))_Ha.Color=Color3.fromRGB(0,140,255)_Ha.Thickness=1 _Ha.Parent=_Ga local _Ia=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_Ia.BackgroundTransparency=1 _Ia.Size=UDim2.new(0,200,0,15)_Ia.AnchorPoint=Vector2.new(0.5,1)_Ia.TextColor3=Color3.fromRGB(255,255,255)_Ia.TextSize=13 _Ia.Font=Enum.Font.GothamBold _Ia.TextStrokeTransparency=0.5 _Ia.Visible=false _Ia.Parent=_Fa local _Ja=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_Ja.BackgroundTransparency=1 _Ja.Size=UDim2.new(0,200,0,15)_Ja.AnchorPoint=Vector2.new(0.5,0)_Ja.TextColor3=Color3.fromRGB(0,160,255)_Ja.TextSize=11 _Ja.Font=Enum.Font.GothamMedium _Ja.TextStrokeTransparency=0.5 _Ja.Visible=false _Ja.Parent=_Fa _Ca[_Ea]={Box=_Ga,Name=_Ia,Info=_Ja}end for _Ka,_La in ipairs(_a:GetPlayers())do _Da(_La)end _a.PlayerAdded:Connect(_Da)_a.PlayerRemoving:Connect(function(_La)if _Ca[_La]then if _Ca[_La].Box and _Ca[_La].Box.Parent then _Ca[_La].Box.Parent:Destroy()end _Ca[_La]=nil end end)local _Ma=false local _Na=false local _Oa=false _fa.MouseButton1Click:Connect(function()_Ma=not _Ma _fa.Text=_Ma and string.char(65,117,116,111,32,77,111,100,117,108,101,58,32,79,78)or string.char(65,117,116,111,32,77,111,100,117,108,101,58,32,79,70,70)_fa.BackgroundColor3=_Ma and Color3.fromRGB(0,140,255)or Color3.fromRGB(26,26,26)end)_ha.MouseButton1Click:Connect(function()_Na=not _Na _ha.Text=_Na and string.char(82,105,110,103,32,86,105,115,117,97,108,58,32,79,78)or string.char(82,105,110,103,32,86,105,115,117,97,108,58,32,79,70,70)_ha.BackgroundColor3=_Na and Color3.fromRGB(0,140,255)or Color3.fromRGB(26,26,26)_ta.Parent=_Na and workspace or nil end)_ia.MouseButton1Click:Connect(function()_za=not _za _ia.Text=_za and string.char(69,83,80,32,66,111,120,101,115,58,32,79,78)or string.char(69,83,80,32,66,111,120,101,115,58,32,79,70,70)_ia.BackgroundColor3=_za and Color3.fromRGB(0,140,255)or Color3.fromRGB(26,26,26)end)_ja.MouseButton1Click:Connect(function()_Aa=not _Aa _ja.Text=_Aa and string.char(69,83,80,32,78,97,109,101,115,58,32,79,78)or string.char(69,83,80,32,78,97,109,101,115,58,32,79,70,70)_ja.BackgroundColor3=_Aa and Color3.fromRGB(0,140,255)or Color3.fromRGB(26,26,26)end)_ka.MouseButton1Click:Connect(function()_Ba=not _Ba _ka.Text=_Ba and string.char(69,83,80,32,68,105,115,116,97,110,99,101,58,32,79,78)or string.char(69,83,80,32,68,105,115,116,97,110,99,101,58,32,79,70,70)_ka.BackgroundColor3=_Ba and Color3.fromRGB(0,140,255)or Color3.fromRGB(26,26,26)end)_ga.MouseButton1Click:Connect(function()_Oa=not _Oa _ga.Text=_Oa and string.char(83,112,97,109,32,75,101,121,32,40,72,111,108,100,32,84,41,58,32,79,78)or string.char(83,112,97,109,32,75,101,121,32,40,72,111,108,100,32,84,41,58,32,79,70,70)_ga.BackgroundColor3=_Oa and Color3.fromRGB(0,140,255)or Color3.fromRGB(26,26,26)end)_ma.MouseButton1Click:Connect(function()if _m then _m:Destroy()end if _ya then _ya:Destroy()end if _ta then _ta:Destroy()end if script then script:Destroy()end end)local function _Pa(_Qa)local _Ra=15 local _Sa=90 local _Ta=math.clamp(_Qa/300,0,1)return _Ra+(_Sa-_Ra)*(_Ta*_Ta*0.7)end local _Ua={}local _Va=0 local function _Wa()local _Xa=os.clock()if _Xa-_Va<0.03 then return end _Va=_Xa local _Ya=_g:FindFirstChild(string.char(82,101,109,111,116,101,115))local _Za=_Ya and(_Ya:FindFirstChild(string.char(80,97,114,114,121,66,117,116,116,111,110,80,114,101,115,115))or _Ya:FindFirstChild(string.char(80,97,114,114,121,65,116,116,101,109,112,116)))or _g:FindFirstChild(string.char(80,97,114,114,121,65,116,116,101,109,112,116))if _Za then if _Za:IsA(string.char(66,105,110,100,97,98,108,101,69,118,101,110,116))then _Za:Fire()elseif _Za:IsA(string.char(82,101,109,111,116,101,69,118,101,110,116))then _Za:FireServer(0.5,CFrame.new(),{},{0,0})end end task.defer(function()_d:SendKeyEvent(true,Enum.KeyCode.F,false,game)task.wait(0.005)_d:SendKeyEvent(false,Enum.KeyCode.F,false,game)end)end local _ab=workspace.CurrentCamera _b.Heartbeat:Connect(function(_bb)local _cb=_h.Character if not _cb or not _cb:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))then if _Na then for _Ka,_xa in ipairs(_va)do _xa.Position=Vector3.new(0,-100,0)end end return end local _db=_cb.HumanoidRootPart local _eb=_db.Position local _fb=math.max(_bb,1/240)if _za or _Aa or _Ba then for _La,_gb in pairs(_Ca)do local _hb=_La.Character local _ib=_hb and _hb:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))local _jb=_hb and _hb:FindFirstChild(string.char(72,101,97,100))if _ib and _jb then local _kb,_lb=_ab:WorldToViewportPoint(_jb.Position+Vector3.new(0,0.8,0))local _mb,_nb=_ab:WorldToViewportPoint(_ib.Position-Vector3.new(0,3.1,0))if _lb or _nb then local _ob=math.abs(_mb.Y-_kb.Y)local _pb=_ob*0.6 local _qb=_kb.X-(_pb/2)local _X=_kb.Y if _gb.Box then _gb.Box.Visible=_za if _za then _gb.Box.Position=UDim2.new(0,_qb,0,_X)_gb.Box.Size=UDim2.new(0,_pb,0,_ob)end end local _rb=_X-18 if _gb.Name then _gb.Name.Visible=_Aa if _Aa then _gb.Name.Text=_La.Name _gb.Name.Position=UDim2.new(0,_kb.X,0,_rb)_rb=_rb-15 end end if _gb.Info then _gb.Info.Visible=_Ba if _Ba then _gb.Info.Text=string.char(91)..math.floor((_eb-_ib.Position).Magnitude)..string.char(32,115,116,117,100,115,93)_gb.Info.Position=UDim2.new(0,_kb.X,0,_rb)end end else if _gb.Box then _gb.Box.Visible=false end if _gb.Name then _gb.Name.Visible=false end if _gb.Info then _gb.Info.Visible=false end end end end end if _Oa and _c:IsKeyDown(Enum.KeyCode.T)then _Wa()end if _Ma or _Na then local _sb=workspace:FindFirstChild(string.char(66,97,108,108,115))local _tb=15 if _sb then for _Ka,_ub in ipairs(_sb:GetChildren())do if _ub:IsA(string.char(66,97,115,101,80,97,114,116))then local _vb=_ub.Position local _wb=_ub.AssemblyLinearVelocity local _Qa=_wb.Magnitude local _xb=_Pa(_Qa)local _yb=_Ua[_ub]if not _yb then _yb={lastTarget=nil,parriedThisTarget=false,lastPosition=_vb,lastVelocity=_wb,smoothedAccel=Vector3.zero,processedEvents={},lastParryTime=0,}_Ua[_ub]=_yb end local _zb=(_wb-_yb.lastVelocity)/_fb _yb.smoothedAccel=_yb.smoothedAccel:Lerp(_zb,0.3)local _Ab=_vb-_yb.lastPosition local _Bb=_Ab.Magnitude local _Cb=(_eb-_vb).Magnitude if _Cb>(_xb+140)then _yb.parriedThisTarget=false end local _Db=_ub:GetAttribute(string.char(116,97,114,103,101,116))if _Db~=_yb.lastTarget then _yb.lastTarget=_Db _yb.parriedThisTarget=false end local _Eb=false local _Fb=math.huge if _Qa>1 then local _Gb=_eb-_vb local _Hb=_yb.smoothedAccel.Magnitude local _Ib=_wb if _Hb>5 then _Ib=_wb+(_yb.smoothedAccel*0.1)end local _Jb=_Ib.Unit local _Kb=_Gb:Dot(_Jb)if _Kb>=0 then local _Lb=_vb+_Jb*_Kb local _Mb=(_Lb-_eb).Magnitude if _Mb<=_xb then local _Nb=_Kb-math.sqrt(math.max(0,(_xb*_xb)-(_Mb*_Mb)))local _Ob=_Nb/_Qa if _Ob<=0.45 then _Fb=_Ob _Eb=true end end end end if not _Eb and _Qa>1 and _Bb>0.001 then local _Pb=_yb.lastPosition-_eb local _Qb=_Ab local _Rb=_Qb:Dot(_Qb)if _Rb>0.001 then local _Sb=2*_Pb:Dot(_Qb)local _Tb=_Pb:Dot(_Pb)local _Ub=math.huge for _Vb=0,1,0.125 do local _Wb=_Pa(_Qa*(1-_Vb)+_Qa*_Vb)local _Xb=_Tb-(_Wb*_Wb)local _Yb=(_Sb*_Sb)-(4*_Rb*_Xb)if _Yb>=0 then local _Zb=math.sqrt(_Yb)local _ac=(-_Sb-_Zb)/(2*_Rb)local _bc=(-_Sb+_Zb)/(2*_Rb)if _ac>=0 and _ac<=1 and _ac<_Ub then _Ub=_ac end if _bc>=0 and _bc<=1 and _bc<_Ub then _Ub=_bc end end end if _Ub<=1 then _Eb=true _Fb=_Ub*_fb end end end if not _Eb and _Cb<=_xb then _Eb=true _Fb=0 end if _Db==_h.Name and _Eb then if _Fb<_tb then _tb=_xb end end if _Ma and _Db==_h.Name and not _yb.parriedThisTarget then if _Eb then _Wa()_yb.parriedThisTarget=true _yb.lastParryTime=os.clock()end end _yb.lastPosition=_vb _yb.lastVelocity=_wb end end end for _cc,_Ka in pairs(_Ua)do local _dc=false pcall(function()if _cc and typeof(_cc)==string.char(73,110,115,116,97,110,103,101)and _cc.Parent then _dc=true end end)if not _dc then _Ua[_cc]=nil end end if _Na then local _ec=Vector3.new(_eb.X,_eb.Y-2.6,_eb.Z)for _wa,_xa in ipairs(_va)do local _fc=(_wa/_ua)*(math.pi*2)local _gc=_ec.X+math.cos(_fc)*_tb local _hc=_ec.Z+math.sin(_fc)*_tb _xa.CFrame=CFrame.new(_gc,_ec.Y,_hc,math.cos(_fc+math.pi/2),0,math.sin(_fc+math.pi/2),0,1,0,-math.sin(_fc+math.pi/2),0,math.cos(_fc+math.pi/2))end end end end)
+-- Modern Dark Architecture & Undetected System Integration v0.4.4 (Dynamic Parry Fix)
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local TweenService = game:GetService("TweenService")
+local HttpService = game:GetService("HttpService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local localPlayer = Players.LocalPlayer
+local playerGui = localPlayer:WaitForChild("PlayerGui")
+
+local function getRandomName()
+    return "UI_" .. string.gsub(HttpService:GenerateGUID(false), "-", ""):sub(1, 12)
+end
+
+local mainGuiName = getRandomName()
+local espGuiName = getRandomName()
+
+if playerGui:FindFirstChild(mainGuiName) then playerGui[mainGuiName]:Destroy() end
+if playerGui:FindFirstChild(espGuiName) then playerGui[espGuiName]:Destroy() end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = mainGuiName
+screenGui.ResetOnSpawn = false
+screenGui.IgnoreGuiInset = true
+
+pcall(function()
+    if gethui then
+        screenGui.Parent = gethui()
+    elseif syn and syn.protect_gui then
+        syn.protect_gui(screenGui)
+        screenGui.Parent = playerGui
+    else
+        screenGui.Parent = playerGui
+    end
+end)
+
+-- ==========================================
+-- CLOUDFLARE WORKER API KEY VALIDATION
+-- ==========================================
+local API_URL = "https://zen-key-api.ea0066777.workers.dev/validate"
+
+local function validateKey(key)
+    local success, response = pcall(function()
+        return game:HttpGet(API_URL .. "?key=" .. HttpService:UrlEncode(key))
+    end)
+    if not success then return false, "request_failed" end
+    local successDecode, data = pcall(function() return HttpService:JSONDecode(response) end)
+    if not successDecode or type(data) ~= "table" then return false, "invalid_json" end
+    if data.valid == true then return true, data end
+    return false, data.error or "unknown_error"
+end
+
+-- ==========================================
+-- KEY SYSTEM UI
+-- ==========================================
+local keyGui = Instance.new("Frame")
+keyGui.Size = UDim2.new(0, 360, 0, 200)
+keyGui.Position = UDim2.new(0.5, -180, 0.5, -100)
+keyGui.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+keyGui.BackgroundTransparency = 0.15
+keyGui.BorderSizePixel = 0
+keyGui.Parent = screenGui
+Instance.new("UICorner", keyGui).CornerRadius = UDim.new(0, 6)
+
+local keyStroke = Instance.new("UIStroke")
+keyStroke.Color = Color3.fromRGB(40, 40, 40)
+keyStroke.Transparency = 0.4
+keyStroke.Thickness = 1
+keyStroke.Parent = keyGui
+
+local keyTitle = Instance.new("TextLabel")
+keyTitle.Size = UDim2.new(1, 0, 0, 35)
+keyTitle.Position = UDim2.new(0, 0, 0, 15)
+keyTitle.BackgroundTransparency = 1
+keyTitle.TextColor3 = Color3.fromRGB(220, 220, 220)
+keyTitle.TextSize = 16
+keyTitle.Font = Enum.Font.GothamBold
+keyTitle.Text = "AUTHENTICATION"
+keyTitle.Parent = keyGui
+
+local keyBox = Instance.new("TextBox")
+keyBox.Size = UDim2.new(0, 310, 0, 38)
+keyBox.Position = UDim2.new(0.5, -155, 0, 65)
+keyBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+keyBox.BackgroundTransparency = 0.3
+keyBox.TextColor3 = Color3.fromRGB(240, 240, 240)
+keyBox.Text = ""
+keyBox.PlaceholderText = "enter your key here"
+keyBox.PlaceholderColor3 = Color3.fromRGB(100, 100, 100)
+keyBox.TextSize = 13
+keyBox.Font = Enum.Font.Gotham
+keyBox.ClearTextOnFocus = false
+keyBox.Parent = keyGui
+Instance.new("UICorner", keyBox).CornerRadius = UDim.new(0, 4)
+
+local boxStroke = Instance.new("UIStroke")
+boxStroke.Color = Color3.fromRGB(45, 45, 45)
+boxStroke.Transparency = 0.5
+boxStroke.Parent = keyBox
+
+local submitKeyBtn = Instance.new("TextButton")
+submitKeyBtn.Size = UDim2.new(0, 310, 0, 34)
+submitKeyBtn.Position = UDim2.new(0.5, -155, 0, 115)
+submitKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
+submitKeyBtn.BackgroundTransparency = 0.2
+submitKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+submitKeyBtn.TextSize = 13
+submitKeyBtn.Font = Enum.Font.GothamBold
+submitKeyBtn.Text = "Submit Key"
+submitKeyBtn.Parent = keyGui
+Instance.new("UICorner", submitKeyBtn).CornerRadius = UDim.new(0, 4)
+
+local getKeyBtn = Instance.new("TextButton")
+getKeyBtn.Size = UDim2.new(0, 310, 0, 28)
+getKeyBtn.Position = UDim2.new(0.5, -155, 0, 160)
+getKeyBtn.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+getKeyBtn.BackgroundTransparency = 0.5
+getKeyBtn.TextColor3 = Color3.fromRGB(160, 160, 160)
+getKeyBtn.TextSize = 11
+getKeyBtn.Font = Enum.Font.GothamMedium
+getKeyBtn.Text = "Get Access Key"
+getKeyBtn.Parent = keyGui
+Instance.new("UICorner", getKeyBtn).CornerRadius = UDim.new(0, 4)
+
+getKeyBtn.MouseButton1Click:Connect(function()
+    pcall(function() setclipboard("https://discord.gg/jauW6BChc4") end)
+    getKeyBtn.Text = "Copied!"
+    task.wait(1.5)
+    getKeyBtn.Text = "Get Access Key"
+end)
+
+-- ==========================================
+-- LOADING UI
+-- ==========================================
+local loadGui = Instance.new("Frame")
+loadGui.Size = UDim2.new(0, 360, 0, 180)
+loadGui.Position = UDim2.new(0.5, -180, 0.5, -90)
+loadGui.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+loadGui.BackgroundTransparency = 0.15
+loadGui.BorderSizePixel = 0
+loadGui.Visible = false
+loadGui.Parent = screenGui
+Instance.new("UICorner", loadGui).CornerRadius = UDim.new(0, 6)
+
+local loadStroke = Instance.new("UIStroke")
+loadStroke.Color = Color3.fromRGB(40, 40, 40)
+loadStroke.Transparency = 0.4
+loadStroke.Thickness = 1
+loadStroke.Parent = loadGui
+
+local loadTitle = Instance.new("TextLabel")
+loadTitle.Size = UDim2.new(1, 0, 0, 40)
+loadTitle.Position = UDim2.new(0, 0, 0, 30)
+loadTitle.BackgroundTransparency = 1
+loadTitle.TextColor3 = Color3.fromRGB(240, 240, 240)
+loadTitle.TextSize = 22
+loadTitle.Font = Enum.Font.GothamBold
+loadTitle.Text = "CORE MODULE"
+loadTitle.Parent = loadGui
+
+local loadSubtitle = Instance.new("TextLabel")
+loadSubtitle.Size = UDim2.new(1, 0, 0, 20)
+loadSubtitle.Position = UDim2.new(0, 0, 0, 75)
+loadSubtitle.BackgroundTransparency = 1
+loadSubtitle.TextColor3 = Color3.fromRGB(140, 140, 140)
+loadSubtitle.TextSize = 12
+loadSubtitle.Font = Enum.Font.Gotham
+loadSubtitle.Text = "Loading components..."
+loadSubtitle.Parent = loadGui
+
+local barBg = Instance.new("Frame")
+barBg.Size = UDim2.new(0, 300, 0, 6)
+barBg.Position = UDim2.new(0.5, -150, 0, 120)
+barBg.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+barBg.BorderSizePixel = 0
+barBg.Parent = loadGui
+Instance.new("UICorner", barBg).CornerRadius = UDim.new(1, 0)
+
+local barFill = Instance.new("Frame")
+barFill.Size = UDim2.new(0, 0, 1, 0)
+barFill.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
+barFill.BorderSizePixel = 0
+barFill.Parent = barBg
+Instance.new("UICorner", barFill).CornerRadius = UDim.new(1, 0)
+
+-- ==========================================
+-- MAIN WINDOW
+-- ==========================================
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 500, 0, 320)
+mainFrame.Position = UDim2.new(0.5, -250, 0.4, -160)
+mainFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+mainFrame.BackgroundTransparency = 0.1
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Visible = false
+mainFrame.Parent = screenGui
+Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 6)
+
+local mainStroke = Instance.new("UIStroke")
+mainStroke.Color = Color3.fromRGB(45, 45, 45)
+mainStroke.Transparency = 0.3
+mainStroke.Thickness = 1
+mainStroke.Parent = mainFrame
+
+submitKeyBtn.MouseButton1Click:Connect(function()
+    local enteredKey = keyBox.Text
+    if enteredKey == "" then return end
+    
+    submitKeyBtn.Text = "Validating..."
+    local isValid, result = validateKey(enteredKey)
+    
+    if isValid then
+        submitKeyBtn.Text = "Success!"
+        task.wait(0.4)
+        
+        keyGui:Destroy()
+        loadGui.Visible = true
+        TweenService:Create(barFill, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 1, 0)}):Play()
+        
+        task.delay(1.5, function()
+            loadGui:Destroy()
+            mainFrame.Visible = true
+        end)
+    else
+        submitKeyBtn.Text = "Submit Key"
+        keyBox.Text = ""
+        keyBox.PlaceholderText = "invalid key"
+        task.wait(2)
+        keyBox.PlaceholderText = "enter your key here"
+    end
+end)
+
+local topBar = Instance.new("Frame")
+topBar.Size = UDim2.new(1, 0, 0, 34)
+topBar.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+topBar.BackgroundTransparency = 0.3
+topBar.BorderSizePixel = 0
+topBar.Parent = mainFrame
+Instance.new("UICorner", topBar).CornerRadius = UDim.new(0, 6)
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(0, 350, 1, 0)
+title.Position = UDim2.new(0, 12, 0, 0)
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.fromRGB(230, 230, 230)
+title.TextSize = 13
+title.Font = Enum.Font.GothamBold
+title.Text = "CORE SYSTEM - v0.4.4 (Dynamic Trigger)"
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = topBar
+
+local closeBtn = Instance.new("TextButton")
+closeBtn.Size = UDim2.new(0, 34, 0, 34)
+closeBtn.Position = UDim2.new(1, -34, 0, 0)
+closeBtn.BackgroundTransparency = 1
+closeBtn.TextColor3 = Color3.fromRGB(180, 180, 180)
+closeBtn.TextSize = 14
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.Text = "X"
+closeBtn.Parent = topBar
+closeBtn.MouseButton1Click:Connect(function() screenGui:Destroy() end)
+
+local sidebar = Instance.new("Frame")
+sidebar.Size = UDim2.new(0, 130, 1, -44)
+sidebar.Position = UDim2.new(0, 8, 0, 38)
+sidebar.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+sidebar.BackgroundTransparency = 0.3
+sidebar.BorderSizePixel = 0
+sidebar.Parent = mainFrame
+Instance.new("UICorner", sidebar).CornerRadius = UDim.new(0, 4)
+
+local contentArea = Instance.new("Frame")
+contentArea.Size = UDim2.new(1, -150, 1, -44)
+contentArea.Position = UDim2.new(0, 142, 0, 38)
+contentArea.BackgroundTransparency = 1
+contentArea.Parent = mainFrame
+
+local mainContainer = Instance.new("ScrollingFrame")
+mainContainer.Size = UDim2.new(1, 0, 1, 0)
+mainContainer.BackgroundTransparency = 1
+mainContainer.Visible = true
+mainContainer.Parent = contentArea
+
+local visualsContainer = Instance.new("ScrollingFrame")
+visualsContainer.Size = UDim2.new(1, 0, 1, 0)
+visualsContainer.BackgroundTransparency = 1
+visualsContainer.Visible = false
+visualsContainer.Parent = contentArea
+
+local settingsContainer = Instance.new("ScrollingFrame")
+settingsContainer.Size = UDim2.new(1, 0, 1, 0)
+settingsContainer.BackgroundTransparency = 1
+settingsContainer.Visible = false
+settingsContainer.Parent = contentArea
+
+local function createTabButton(name, posY)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0.9, 0, 0, 32)
+    btn.Position = UDim2.new(0.05, 0, 0, posY)
+    btn.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+    btn.BackgroundTransparency = 0.3
+    btn.TextColor3 = Color3.fromRGB(160, 160, 160)
+    btn.TextSize = 12
+    btn.Font = Enum.Font.Gotham
+    btn.Text = name
+    btn.Parent = sidebar
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 4)
+    return btn
+end
+
+local tabMainBtn = createTabButton("Main", 10)
+local tabVisualsBtn = createTabButton("Visuals", 48)
+local tabSettingsBtn = createTabButton("Settings", 86)
+
+local function createWinButton(parent, name, posY, isDangerous)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0.95, 0, 0, 34)
+    btn.Position = UDim2.new(0, 0, 0, posY)
+    btn.BackgroundColor3 = isDangerous and Color3.fromRGB(140, 30, 30) or Color3.fromRGB(26, 26, 26)
+    btn.BackgroundTransparency = 0.3
+    btn.TextColor3 = Color3.fromRGB(220, 220, 220)
+    btn.TextSize = 12
+    btn.Font = Enum.Font.GothamMedium
+    btn.Text = name
+    btn.Parent = parent
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 4)
+    return btn
+end
+
+local parryBtn = createWinButton(mainContainer, "Auto Module: OFF", 10, false)
+local clashBtn = createWinButton(mainContainer, "Spam Key (Hold T): OFF", 52, false)
+local haloBtn = createWinButton(visualsContainer, "Ring Visual: OFF", 10, false)
+local espBoxBtn = createWinButton(visualsContainer, "ESP Boxes: OFF", 52, false)
+local espNameBtn = createWinButton(visualsContainer, "ESP Names: OFF", 94, false)
+local espDistBtn = createWinButton(visualsContainer, "ESP Distance: OFF", 136, false)
+local toggleKeyBtn = createWinButton(settingsContainer, "Toggle Key: [ RightShift ]", 10, false)
+local unloadBtn = createWinButton(settingsContainer, "Unload Script", 52, true)
+
+visualsContainer.CanvasSize = UDim2.new(0, 0, 0, 200)
+
+local function switchTab(activeTab)
+    mainContainer.Visible = (activeTab == "main")
+    visualsContainer.Visible = (activeTab == "visuals")
+    settingsContainer.Visible = (activeTab == "settings")
+    
+    tabMainBtn.BackgroundColor3 = (activeTab == "main") and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(24, 24, 24)
+    tabMainBtn.TextColor3 = (activeTab == "main") and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(160, 160, 160)
+    tabVisualsBtn.BackgroundColor3 = (activeTab == "visuals") and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(24, 24, 24)
+    tabVisualsBtn.TextColor3 = (activeTab == "visuals") and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(160, 160, 160)
+    tabSettingsBtn.BackgroundColor3 = (activeTab == "settings") and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(24, 24, 24)
+    tabSettingsBtn.TextColor3 = (activeTab == "settings") and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(160, 160, 160)
+end
+
+tabMainBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
+tabMainBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+tabMainBtn.MouseButton1Click:Connect(function() switchTab("main") end)
+tabVisualsBtn.MouseButton1Click:Connect(function() switchTab("visuals") end)
+tabSettingsBtn.MouseButton1Click:Connect(function() switchTab("settings") end)
+
+local hideKey = Enum.KeyCode.RightShift
+local waitingForKey = false
+
+toggleKeyBtn.MouseButton1Click:Connect(function()
+    waitingForKey = true
+    toggleKeyBtn.Text = "Press any key..."
+end)
+
+UserInputService.InputBegan:Connect(function(input, gpe)
+    if waitingForKey then
+        if input.UserInputType == Enum.UserInputType.Keyboard then
+            hideKey = input.KeyCode
+            toggleKeyBtn.Text = "Toggle Key: [ " .. tostring(hideKey.Name) .. " ]"
+            waitingForKey = false
+        end
+        return
+    end
+    if input.KeyCode == hideKey and not gpe then
+        mainFrame.Visible = not mainFrame.Visible
+    end
+end)
+
+-- ==========================================
+-- VISUAL SETUP
+-- ==========================================
+local haloFolder = Instance.new("Folder")
+haloFolder.Name = getRandomName()
+
+local segments = 32
+local ringParts = {}
+
+for i = 1, segments do
+    local seg = Instance.new("Part")
+    seg.Name = "Seg"
+    seg.Size = Vector3.new(0.6, 0.2, 1.2)
+    seg.Anchored = true
+    seg.CanCollide = false
+    seg.Material = Enum.Material.Neon
+    seg.Color = Color3.fromRGB(0, 140, 255)
+    seg.Transparency = 0.3
+    seg.Parent = haloFolder
+    table.insert(ringParts, seg)
+end
+
+-- ==========================================
+-- ESP SYSTEM
+-- ==========================================
+local espGui = Instance.new("ScreenGui")
+espGui.Name = espGuiName
+espGui.ResetOnSpawn = false
+espGui.IgnoreGuiInset = true
+
+pcall(function()
+    if gethui then espGui.Parent = gethui() else espGui.Parent = playerGui end
+end)
+
+local espBoxEnabled = false
+local espNameEnabled = false
+local espDistEnabled = false
+local espContainers = {}
+
+local function setupPlayerEsp(plr)
+    if plr == localPlayer then return end
+    
+    local container = Instance.new("Folder")
+    container.Name = getRandomName()
+    container.Parent = espGui
+    
+    local box = Instance.new("Frame")
+    box.BackgroundTransparency = 1
+    box.Visible = false
+    box.Parent = container
+    
+    local stroke = Instance.new("UIStroke")
+    stroke.Color = Color3.fromRGB(0, 140, 255)
+    stroke.Thickness = 1
+    stroke.Parent = box
+    
+    local nameLabel = Instance.new("TextLabel")
+    nameLabel.BackgroundTransparency = 1
+    nameLabel.Size = UDim2.new(0, 200, 0, 15)
+    nameLabel.AnchorPoint = Vector2.new(0.5, 1)
+    nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    nameLabel.TextSize = 13
+    nameLabel.Font = Enum.Font.GothamBold
+    nameLabel.TextStrokeTransparency = 0.5
+    nameLabel.Visible = false
+    nameLabel.Parent = container
+    
+    local infoLabel = Instance.new("TextLabel")
+    infoLabel.BackgroundTransparency = 1
+    infoLabel.Size = UDim2.new(0, 200, 0, 15)
+    infoLabel.AnchorPoint = Vector2.new(0.5, 0)
+    infoLabel.TextColor3 = Color3.fromRGB(0, 160, 255)
+    infoLabel.TextSize = 11
+    infoLabel.Font = Enum.Font.GothamMedium
+    infoLabel.TextStrokeTransparency = 0.5
+    infoLabel.Visible = false
+    infoLabel.Parent = container
+    
+    espContainers[plr] = { Box = box, Name = nameLabel, Info = infoLabel }
+end
+
+for _, p in ipairs(Players:GetPlayers()) do setupPlayerEsp(p) end
+Players.PlayerAdded:Connect(setupPlayerEsp)
+Players.PlayerRemoving:Connect(function(p)
+    if espContainers[p] then
+        if espContainers[p].Box and espContainers[p].Box.Parent then
+            espContainers[p].Box.Parent:Destroy()
+        end
+        espContainers[p] = nil
+    end
+end)
+
+local parryEnabled = false
+local haloEnabled = false
+local clashEnabled = false
+
+parryBtn.MouseButton1Click:Connect(function()
+    parryEnabled = not parryEnabled
+    parryBtn.Text = parryEnabled and "Auto Module: ON" or "Auto Module: OFF"
+    parryBtn.BackgroundColor3 = parryEnabled and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(26, 26, 26)
+end)
+
+haloBtn.MouseButton1Click:Connect(function()
+    haloEnabled = not haloEnabled
+    haloBtn.Text = haloEnabled and "Ring Visual: ON" or "Ring Visual: OFF"
+    haloBtn.BackgroundColor3 = haloEnabled and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(26, 26, 26)
+    haloFolder.Parent = haloEnabled and workspace or nil
+end)
+
+espBoxBtn.MouseButton1Click:Connect(function()
+    espBoxEnabled = not espBoxEnabled
+    espBoxBtn.Text = espBoxEnabled and "ESP Boxes: ON" or "ESP Boxes: OFF"
+    espBoxBtn.BackgroundColor3 = espBoxEnabled and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(26, 26, 26)
+end)
+
+espNameBtn.MouseButton1Click:Connect(function()
+    espNameEnabled = not espNameEnabled
+    espNameBtn.Text = espNameEnabled and "ESP Names: ON" or "ESP Names: OFF"
+    espNameBtn.BackgroundColor3 = espNameEnabled and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(26, 26, 26)
+end)
+
+espDistBtn.MouseButton1Click:Connect(function()
+    espDistEnabled = not espDistEnabled
+    espDistBtn.Text = espDistEnabled and "ESP Distance: ON" or "ESP Distance: OFF"
+    espDistBtn.BackgroundColor3 = espDistEnabled and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(26, 26, 26)
+end)
+
+clashBtn.MouseButton1Click:Connect(function()
+    clashEnabled = not clashEnabled
+    clashBtn.Text = clashEnabled and "Spam Key (Hold T): ON" or "Spam Key (Hold T): OFF"
+    clashBtn.BackgroundColor3 = clashEnabled and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(26, 26, 26)
+end)
+
+unloadBtn.MouseButton1Click:Connect(function()
+    if screenGui then screenGui:Destroy() end
+    if espGui then espGui:Destroy() end
+    if haloFolder then haloFolder:Destroy() end
+    script:Destroy()
+end)
+
+-- ==========================================
+-- DYNAMIC PARRY TRIGGER (ANTI-BAC & RELIABLE)
+-- ==========================================
+
+local function calculateBallRadius(speed)
+    local minR = 15
+    local maxR = 90
+    local sFactor = math.clamp(speed / 300, 0, 1)
+    return minR + (maxR - minR) * (sFactor * sFactor * 0.7)
+end
+
+local ballStates = {}
+local lastParryClock = 0
+
+local function executeParry()
+    local now = os.clock()
+    if now - lastParryClock < 0.03 then return end
+    lastParryClock = now
+    
+    -- 1. Intento por Bindable/Remote Event en tiempo real
+    local remotes = ReplicatedStorage:FindFirstChild("Remotes")
+    local event = remotes and (remotes:FindFirstChild("ParryButtonPress") or remotes:FindFirstChild("ParryAttempt")) 
+        or ReplicatedStorage:FindFirstChild("ParryAttempt")
+        
+    if event then
+        if event:IsA("BindableEvent") then
+            event:Fire()
+        elseif event:IsA("RemoteEvent") then
+            event:FireServer(0.5, CFrame.new(), {}, {0, 0})
+        end
+    end
+    
+    -- 2. Intento por Simulación de Tecla F en el motor
+    task.defer(function()
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+        task.wait(0.005)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+    end)
+end
+
+-- ==========================================
+-- MAIN ENGINE OPTIMIZADO
+-- ==========================================
+local camera = workspace.CurrentCamera
+
+RunService.Heartbeat:Connect(function(heartbeatDt)
+    local character = localPlayer.Character
+    if not character or not character:FindFirstChild("HumanoidRootPart") then
+        if haloEnabled then
+            for _, seg in ipairs(ringParts) do seg.Position = Vector3.new(0, -100, 0) end
+        end
+        return
+    end
+    
+    local hrp = character.HumanoidRootPart
+    local hrpPos = hrp.Position
+    local dt = math.max(heartbeatDt, 1/240)
+    
+    -- UPDATE ESP
+    if espBoxEnabled or espNameEnabled or espDistEnabled then
+        for p, visuals in pairs(espContainers) do
+            local pChar = p.Character
+            local pRoot = pChar and pChar:FindFirstChild("HumanoidRootPart")
+            local pHead = pChar and pChar:FindFirstChild("Head")
+            
+            if pRoot and pHead then
+                local headPos, headVis = camera:WorldToViewportPoint(pHead.Position + Vector3.new(0, 0.8, 0))
+                local footPos, footVis = camera:WorldToViewportPoint(pRoot.Position - Vector3.new(0, 3.1, 0))
+                
+                if headVis or footVis then
+                    local height = math.abs(footPos.Y - headPos.Y)
+                    local width = height * 0.6
+                    local posX = headPos.X - (width / 2)
+                    local posY = headPos.Y
+                    
+                    if visuals.Box then
+                        visuals.Box.Visible = espBoxEnabled
+                        if espBoxEnabled then
+                            visuals.Box.Position = UDim2.new(0, posX, 0, posY)
+                            visuals.Box.Size = UDim2.new(0, width, 0, height)
+                        end
+                    end
+                    
+                    local textOffsetY = posY - 18
+                    if visuals.Name then
+                        visuals.Name.Visible = espNameEnabled
+                        if espNameEnabled then
+                            visuals.Name.Text = p.Name
+                            visuals.Name.Position = UDim2.new(0, headPos.X, 0, textOffsetY)
+                            textOffsetY = textOffsetY - 15
+                        end
+                    end
+                    
+                    if visuals.Info then
+                        visuals.Info.Visible = espDistEnabled
+                        if espDistEnabled then
+                            visuals.Info.Text = "[" .. math.floor((hrpPos - pRoot.Position).Magnitude) .. " studs]"
+                            visuals.Info.Position = UDim2.new(0, headPos.X, 0, textOffsetY)
+                        end
+                    end
+                else
+                    if visuals.Box then visuals.Box.Visible = false end
+                    if visuals.Name then visuals.Name.Visible = false end
+                    if visuals.Info then visuals.Info.Visible = false end
+                end
+            end
+        end
+    end
+    
+    -- CLASH SPAM
+    if clashEnabled and UserInputService:IsKeyDown(Enum.KeyCode.T) then
+        executeParry()
+    end
+    
+    -- ALGORITMO AUTO PARRY ORIGINAL
+    if parryEnabled or haloEnabled then
+        local balls = workspace:FindFirstChild("Balls")
+        local imminentHaloRadius = 15
+        
+        if balls then
+            for _, ball in ipairs(balls:GetChildren()) do
+                if ball:IsA("BasePart") then
+                    local currentPos = ball.Position
+                    local velocity = ball.AssemblyLinearVelocity
+                    local speed = velocity.Magnitude
+                    local currentRadius = calculateBallRadius(speed)
+                    
+                    local state = ballStates[ball]
+                    if not state then
+                        state = {
+                            lastTarget = nil,
+                            parriedThisTarget = false,
+                            lastPosition = currentPos,
+                            lastVelocity = velocity,
+                            smoothedAccel = Vector3.zero,
+                            processedEvents = {},
+                            lastParryTime = 0,
+                        }
+                        ballStates[ball] = state
+                    end
+                    
+                    local accelEstimation = (velocity - state.lastVelocity) / dt
+                    state.smoothedAccel = state.smoothedAccel:Lerp(accelEstimation, 0.3)
+                    
+                    local displacement = currentPos - state.lastPosition
+                    local segmentLength = displacement.Magnitude
+                    local distance3D = (hrpPos - currentPos).Magnitude
+                    
+                    if distance3D > (currentRadius + 140) then
+                        state.parriedThisTarget = false
+                    end
+                    
+                    local currentTarget = ball:GetAttribute("target")
+                    if currentTarget ~= state.lastTarget then
+                        state.lastTarget = currentTarget
+                        state.parriedThisTarget = false
+                    end
+                    
+                    local triggeredThisFrame = false
+                    local evaluatedTTI = math.huge
+                    
+                    if speed > 1 then
+                        local toPlayer = hrpPos - currentPos
+                        local aMagnitude = state.smoothedAccel.Magnitude
+                        local effectiveVel = velocity
+                        if aMagnitude > 5 then
+                            effectiveVel = velocity + (state.smoothedAccel * 0.1)
+                        end
+                        
+                        local vNorm = effectiveVel.Unit
+                        local projDist = toPlayer:Dot(vNorm)
+                        
+                        if projDist >= 0 then
+                            local closestPoint = currentPos + vNorm * projDist
+                            local perpDist = (closestPoint - hrpPos).Magnitude
+                            
+                            if perpDist <= currentRadius then
+                                local approachDist = projDist - math.sqrt(math.max(0, (currentRadius * currentRadius) - (perpDist * perpDist)))
+                                local predictedTime = approachDist / speed
+                                
+                                if predictedTime <= 0.45 then
+                                    evaluatedTTI = predictedTime
+                                    triggeredThisFrame = true
+                                end
+                            end
+                        end
+                    end
+                    
+                    if not triggeredThisFrame and speed > 1 and segmentLength > 0.001 then
+                        local r0 = state.lastPosition - hrpPos
+                        local v = displacement
+                        local a = v:Dot(v)
+                        
+                        if a > 0.001 then
+                            local b = 2 * r0:Dot(v)
+                            local c = r0:Dot(r0)
+                            local bestT = math.huge
+                            
+                            for sampleT = 0, 1, 0.125 do
+                                local dynamicR = calculateBallRadius(speed * (1 - sampleT) + speed * sampleT)
+                                local localC = c - (dynamicR * dynamicR)
+                                local disc = (b * b) - (4 * a * localC)
+                                
+                                if disc >= 0 then
+                                    local sqrtD = math.sqrt(disc)
+                                    local t1 = (-b - sqrtD) / (2 * a)
+                                    local t2 = (-b + sqrtD) / (2 * a)
+                                    if t1 >= 0 and t1 <= 1 and t1 < bestT then bestT = t1 end
+                                    if t2 >= 0 and t2 <= 1 and t2 < bestT then bestT = t2 end
+                                end
+                            end
+                            
+                            if bestT <= 1 then
+                                triggeredThisFrame = true
+                                evaluatedTTI = bestT * dt
+                            end
+                        end
+                    end
+                    
+                    if not triggeredThisFrame and distance3D <= currentRadius then
+                        triggeredThisFrame = true
+                        evaluatedTTI = 0
+                    end
+                    
+                    if currentTarget == localPlayer.Name and triggeredThisFrame then
+                        if evaluatedTTI < imminentHaloRadius then
+                            imminentHaloRadius = currentRadius
+                        end
+                    end
+                    
+                    -- PARRY TRIGGER
+                    if parryEnabled and currentTarget == localPlayer.Name and not state.parriedThisTarget then
+                        if triggeredThisFrame then
+                            executeParry()
+                            state.parriedThisTarget = true
+                            state.lastParryTime = os.clock()
+                        end
+                    end
+                    
+                    state.lastPosition = currentPos
+                    state.lastVelocity = velocity
+                end
+            end
+        end
+        
+        -- SAFE CLEANUP
+        for ballRef, _ in pairs(ballStates) do
+            local isAlive = false
+            pcall(function()
+                if ballRef and typeof(ballRef) == "Instance" and ballRef.Parent then
+                    isAlive = true
+                end
+            end)
+            if not isAlive then
+                ballStates[ballRef] = nil
+            end
+        end
+        
+        -- HALO VISUAL INTACTO
+        if haloEnabled then
+            local centerPos = Vector3.new(hrpPos.X, hrpPos.Y - 2.6, hrpPos.Z)
+            for i, seg in ipairs(ringParts) do
+                local angle = (i / segments) * (math.pi * 2)
+                local x = centerPos.X + math.cos(angle) * imminentHaloRadius
+                local z = centerPos.Z + math.sin(angle) * imminentHaloRadius
+                seg.CFrame = CFrame.new(x, centerPos.Y, z, 
+                    math.cos(angle + math.pi/2), 0, math.sin(angle + math.pi/2),
+                    0, 1, 0,
+                    -math.sin(angle + math.pi/2), 0, math.cos(angle + math.pi/2)
+                )
+            end
+        end
+    end
+end)
