@@ -1,59 +1,121 @@
--- Modern Dark Architecture & Undetected System Integration v0.4.4 (Dynamic Parry Fix)
+-- Modern Dark Architecture & Undetected System Integration v0.5.0
+-- Optimized Anti-BAC
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local TweenService = game:GetService("TweenService")
 local HttpService = game:GetService("HttpService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+local Camera = Workspace.CurrentCamera
 
 local localPlayer = Players.LocalPlayer
 local playerGui = localPlayer:WaitForChild("PlayerGui")
 
+-- ==========================================
+-- OFUSCACIÓN MEJORADA
+-- ==========================================
+local function obfuscateString(str)
+    local result = ""
+    for i = 1, #str do
+        local char = string.byte(str, i)
+        result = result .. string.char(char + math.random(1, 3))
+    end
+    return result
+end
+
+local function deobfuscateString(str)
+    local result = ""
+    for i = 1, #str do
+        local char = string.byte(str, i)
+        result = result .. string.char(char - 1)
+    end
+    return result
+end
+
+-- Nombres aleatorios con ofuscación
 local function getRandomName()
-    return "UI_" .. string.gsub(HttpService:GenerateGUID(false), "-", ""):sub(1, 12)
+    local names = {"UI", "Module", "Core", "System", "Frame", "Component", "Element", "Widget", "Panel", "View"}
+    return names[math.random(#names)] .. "_" .. string.gsub(HttpService:GenerateGUID(false), "-", ""):sub(1, 8)
 end
 
 local mainGuiName = getRandomName()
 local espGuiName = getRandomName()
 
-if playerGui:FindFirstChild(mainGuiName) then playerGui[mainGuiName]:Destroy() end
-if playerGui:FindFirstChild(espGuiName) then playerGui[espGuiName]:Destroy() end
-
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = mainGuiName
-screenGui.ResetOnSpawn = false
-screenGui.IgnoreGuiInset = true
-
-pcall(function()
-    if gethui then
-        screenGui.Parent = gethui()
-    elseif syn and syn.protect_gui then
-        syn.protect_gui(screenGui)
-        screenGui.Parent = playerGui
+-- ==========================================
+-- CREACIÓN DE GUI CON DETECCIÓN DE ENTORNO
+-- ==========================================
+local function createSecureGui()
+    local gui = Instance.new("ScreenGui")
+    gui.Name = mainGuiName
+    gui.ResetOnSpawn = false
+    gui.IgnoreGuiInset = true
+    gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    
+    -- Verificar entorno de ejecución
+    local success, isSynapse = pcall(function()
+        return syn and syn.protect_gui
+    end)
+    
+    local success2, isKrnl = pcall(function()
+        return getexecutorname and getexecutorname() == "Krnl"
+    end)
+    
+    local success3, isScriptWare = pcall(function()
+        return is_sirhurt and is_sirhurt()
+    end)
+    
+    if isSynapse then
+        syn.protect_gui(gui)
+        gui.Parent = playerGui
+    elseif isKrnl then
+        gui.Parent = playerGui
+    elseif isScriptWare then
+        gui.Parent = playerGui
+    elseif gethui then
+        gui.Parent = gethui()
     else
-        screenGui.Parent = playerGui
+        gui.Parent = playerGui
     end
-end)
+    
+    return gui
+end
+
+local screenGui = createSecureGui()
 
 -- ==========================================
--- CLOUDFLARE WORKER API KEY VALIDATION
+-- KEY VALIDATION CON OFUSCACIÓN
 -- ==========================================
 local API_URL = "https://zen-key-api.ea0066777.workers.dev/validate"
 
 local function validateKey(key)
+    local encodedKey = HttpService:UrlEncode(key)
+    local url = API_URL .. "?key=" .. encodedKey
+    
     local success, response = pcall(function()
-        return game:HttpGet(API_URL .. "?key=" .. HttpService:UrlEncode(key))
+        return game:HttpGet(url, true)
     end)
+    
     if not success then return false, "request_failed" end
-    local successDecode, data = pcall(function() return HttpService:JSONDecode(response) end)
-    if not successDecode or type(data) ~= "table" then return false, "invalid_json" end
-    if data.valid == true then return true, data end
+    
+    local successDecode, data = pcall(function()
+        return HttpService:JSONDecode(response)
+    end)
+    
+    if not successDecode or type(data) ~= "table" then 
+        return false, "invalid_json" 
+    end
+    
+    if data.valid == true then 
+        return true, data 
+    end
+    
     return false, data.error or "unknown_error"
 end
 
 -- ==========================================
--- KEY SYSTEM UI
+-- KEY SYSTEM UI (Mejorado)
 -- ==========================================
 local keyGui = Instance.new("Frame")
 keyGui.Size = UDim2.new(0, 360, 0, 200)
@@ -62,6 +124,7 @@ keyGui.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 keyGui.BackgroundTransparency = 0.15
 keyGui.BorderSizePixel = 0
 keyGui.Parent = screenGui
+
 Instance.new("UICorner", keyGui).CornerRadius = UDim.new(0, 6)
 
 local keyStroke = Instance.new("UIStroke")
@@ -125,7 +188,9 @@ getKeyBtn.Parent = keyGui
 Instance.new("UICorner", getKeyBtn).CornerRadius = UDim.new(0, 4)
 
 getKeyBtn.MouseButton1Click:Connect(function()
-    pcall(function() setclipboard("https://discord.gg/jauW6BChc4") end)
+    pcall(function() 
+        setclipboard("https://discord.gg/jauW6BChc4") 
+    end)
     getKeyBtn.Text = "Copied!"
     task.wait(1.5)
     getKeyBtn.Text = "Get Access Key"
@@ -186,7 +251,7 @@ barFill.Parent = barBg
 Instance.new("UICorner", barFill).CornerRadius = UDim.new(1, 0)
 
 -- ==========================================
--- MAIN WINDOW
+-- MAIN WINDOW (Mejorado con anti-BAC)
 -- ==========================================
 local mainFrame = Instance.new("Frame")
 mainFrame.Size = UDim2.new(0, 500, 0, 320)
@@ -208,7 +273,10 @@ mainStroke.Parent = mainFrame
 
 submitKeyBtn.MouseButton1Click:Connect(function()
     local enteredKey = keyBox.Text
-    if enteredKey == "" then return end
+    if enteredKey == "" then
+        keyBox.PlaceholderText = "enter your key here"
+        return
+    end
     
     submitKeyBtn.Text = "Validating..."
     local isValid, result = validateKey(enteredKey)
@@ -219,9 +287,9 @@ submitKeyBtn.MouseButton1Click:Connect(function()
         
         keyGui:Destroy()
         loadGui.Visible = true
-        TweenService:Create(barFill, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 1, 0)}):Play()
+        TweenService:Create(barFill, TweenInfo.new(2.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 1, 0)}):Play()
         
-        task.delay(1.5, function()
+        task.delay(2.5, function()
             loadGui:Destroy()
             mainFrame.Visible = true
         end)
@@ -234,6 +302,9 @@ submitKeyBtn.MouseButton1Click:Connect(function()
     end
 end)
 
+-- ==========================================
+-- UI COMPONENTS
+-- ==========================================
 local topBar = Instance.new("Frame")
 topBar.Size = UDim2.new(1, 0, 0, 34)
 topBar.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
@@ -249,7 +320,7 @@ title.BackgroundTransparency = 1
 title.TextColor3 = Color3.fromRGB(230, 230, 230)
 title.TextSize = 13
 title.Font = Enum.Font.GothamBold
-title.Text = "CORE SYSTEM - v0.4.4 (Dynamic Trigger)"
+title.Text = "CORE SYSTEM - v0.5.0"
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.Parent = topBar
 
@@ -384,7 +455,7 @@ UserInputService.InputBegan:Connect(function(input, gpe)
 end)
 
 -- ==========================================
--- VISUAL SETUP
+-- VISUAL SETUP (Mejorado)
 -- ==========================================
 local haloFolder = Instance.new("Folder")
 haloFolder.Name = getRandomName()
@@ -406,7 +477,7 @@ for i = 1, segments do
 end
 
 -- ==========================================
--- ESP SYSTEM
+-- ESP SYSTEM (Mejorado)
 -- ==========================================
 local espGui = Instance.new("ScreenGui")
 espGui.Name = espGuiName
@@ -414,7 +485,11 @@ espGui.ResetOnSpawn = false
 espGui.IgnoreGuiInset = true
 
 pcall(function()
-    if gethui then espGui.Parent = gethui() else espGui.Parent = playerGui end
+    if gethui then
+        espGui.Parent = gethui()
+    else
+        espGui.Parent = playerGui
+    end
 end)
 
 local espBoxEnabled = false
@@ -461,10 +536,17 @@ local function setupPlayerEsp(plr)
     infoLabel.Visible = false
     infoLabel.Parent = container
     
-    espContainers[plr] = { Box = box, Name = nameLabel, Info = infoLabel }
+    espContainers[plr] = {
+        Box = box,
+        Name = nameLabel,
+        Info = infoLabel
+    }
 end
 
-for _, p in ipairs(Players:GetPlayers()) do setupPlayerEsp(p) end
+for _, p in ipairs(Players:GetPlayers()) do
+    setupPlayerEsp(p)
+end
+
 Players.PlayerAdded:Connect(setupPlayerEsp)
 Players.PlayerRemoving:Connect(function(p)
     if espContainers[p] then
@@ -475,6 +557,9 @@ Players.PlayerRemoving:Connect(function(p)
     end
 end)
 
+-- ==========================================
+-- TOGGLES
+-- ==========================================
 local parryEnabled = false
 local haloEnabled = false
 local clashEnabled = false
@@ -483,13 +568,27 @@ parryBtn.MouseButton1Click:Connect(function()
     parryEnabled = not parryEnabled
     parryBtn.Text = parryEnabled and "Auto Module: ON" or "Auto Module: OFF"
     parryBtn.BackgroundColor3 = parryEnabled and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(26, 26, 26)
+    
+    -- Si el halo está activado pero el autoparry se activa después, el halo se actualiza automáticamente
+    if haloEnabled and parryEnabled then
+        haloFolder.Parent = Workspace
+    end
 end)
 
 haloBtn.MouseButton1Click:Connect(function()
     haloEnabled = not haloEnabled
     haloBtn.Text = haloEnabled and "Ring Visual: ON" or "Ring Visual: OFF"
     haloBtn.BackgroundColor3 = haloEnabled and Color3.fromRGB(0, 140, 255) or Color3.fromRGB(26, 26, 26)
-    haloFolder.Parent = haloEnabled and workspace or nil
+    
+    -- Fix: Si el halo se activa antes que el autoparry, espera a que el autoparry esté activo
+    if haloEnabled and parryEnabled then
+        haloFolder.Parent = Workspace
+    elseif haloEnabled and not parryEnabled then
+        -- El halo se mantiene oculto hasta que el autoparry se active
+        haloFolder.Parent = nil
+    else
+        haloFolder.Parent = nil
+    end
 end)
 
 espBoxBtn.MouseButton1Click:Connect(function()
@@ -524,9 +623,8 @@ unloadBtn.MouseButton1Click:Connect(function()
 end)
 
 -- ==========================================
--- DYNAMIC PARRY TRIGGER (ANTI-BAC & RELIABLE)
+-- ANTI-BAC MEJORADO
 -- ==========================================
-
 local function calculateBallRadius(speed)
     local minR = 15
     local maxR = 90
@@ -534,46 +632,169 @@ local function calculateBallRadius(speed)
     return minR + (maxR - minR) * (sFactor * sFactor * 0.7)
 end
 
+-- Variables de estado con aleatoriedad
 local ballStates = {}
 local lastParryClock = 0
+local parryCooldown = 0.09
+local pendingQueue = {}
+local isProcessing = false
 
+-- ==========================================
+-- PARRY CON MÚLTIPLES MÉTODOS DE INPUT Y JITTER EXTREMO
+-- ==========================================
 local function executeParry()
     local now = os.clock()
-    if now - lastParryClock < 0.03 then return end
+    
+    -- Jitter extremo y aleatorio para anti-BAC
+    local jitter = math.random(10, 45) / 1000
+    local randomDelay = math.random(0, 6) / 1000
+    
+    if now - lastParryClock < (parryCooldown + jitter) then
+        return false
+    end
     lastParryClock = now
     
-    -- 1. Intento por Bindable/Remote Event en tiempo real
-    local remotes = ReplicatedStorage:FindFirstChild("Remotes")
-    local event = remotes and (remotes:FindFirstChild("ParryButtonPress") or remotes:FindFirstChild("ParryAttempt")) 
-        or ReplicatedStorage:FindFirstChild("ParryAttempt")
-        
-    if event then
-        if event:IsA("BindableEvent") then
-            event:Fire()
-        elseif event:IsA("RemoteEvent") then
-            event:FireServer(0.5, CFrame.new(), {}, {0, 0})
-        end
-    end
+    -- Variación en el método de input
+    local method = math.random(1, 4)
     
-    -- 2. Intento por Simulación de Tecla F en el motor
-    task.defer(function()
-        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
-        task.wait(0.005)
-        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+    local success = pcall(function()
+        if method == 1 then
+            -- Método VirtualInputManager con variación
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+            task.wait(0.001 + randomDelay)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+        elseif method == 2 then
+            -- Método alternativo con keypress/keyrelease
+            if keypress and keyrelease then
+                keypress(0x46)
+                task.wait(0.001 + randomDelay)
+                keyrelease(0x46)
+            else
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+                task.wait(0.001 + randomDelay)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+            end
+        elseif method == 3 then
+            -- Doble tap con variación
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+            task.wait(0.001 + randomDelay)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+            task.wait(0.001 + randomDelay)
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+            task.wait(0.001 + randomDelay)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+        else
+            -- Método con hold corto
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+            task.wait(0.002 + randomDelay)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+        end
+        
+        -- Simular error humano ocasional (5% de veces)
+        if math.random() > 0.95 then
+            task.wait(0.001)
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+            task.wait(0.001)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+        end
     end)
+    
+    return success
 end
 
 -- ==========================================
--- MAIN ENGINE OPTIMIZADO
+-- COLA DE PARRYS CON PROCESAMIENTO ASINCRÓNICO
 -- ==========================================
-local camera = workspace.CurrentCamera
+local function processQueue()
+    if isProcessing then return end
+    isProcessing = true
+    
+    task.spawn(function()
+        while #pendingQueue > 0 do
+            local entry = table.remove(pendingQueue, 1)
+            if entry then
+                executeParry()
+                -- Variación en el tiempo entre parrys
+                if #pendingQueue > 0 then
+                    task.wait(0.002 + (math.random(0, 4) / 1000))
+                end
+            end
+        end
+        isProcessing = false
+    end)
+end
+
+local function queueParry(ballId)
+    -- Verificar duplicados con variación
+    local duplicateFound = false
+    for _, id in ipairs(pendingQueue) do
+        if id == ballId then
+            duplicateFound = true
+            break
+        end
+    end
+    
+    if duplicateFound then return false end
+    
+    -- Limitar tamaño de la cola
+    if #pendingQueue >= 15 then
+        table.remove(pendingQueue, 1)
+    end
+    
+    table.insert(pendingQueue, ballId)
+    processQueue()
+    return true
+end
+
+-- ==========================================
+-- MAIN ENGINE CON ANTI-BAC EXTREMO
+-- ==========================================
+local camera = Workspace.CurrentCamera
+local frameCounter = 0
+local frameSkipCount = 0
+local processingTime = 0
+
+-- Función para verificar si se debe saltar frame
+local function shouldSkipFrame()
+    frameSkipCount = frameSkipCount + 1
+    -- Patrón aleatorio de skip (2-8% de frames)
+    local skipInterval = math.random(12, 50)
+    if frameSkipCount % skipInterval == 0 then
+        frameSkipCount = 0
+        return true
+    end
+    return false
+end
+
+-- Variables para el halo cuando está activo pero el autoparry no
+local haloActiveWithoutParry = false
 
 RunService.Heartbeat:Connect(function(heartbeatDt)
+    frameCounter = frameCounter + 1
+    
+    -- Anti-BAC: Frame skip aleatorio
+    if shouldSkipFrame() then
+        return
+    end
+    
+    -- Anti-BAC: Variación en el tiempo de procesamiento
+    processingTime = processingTime + heartbeatDt
+    
     local character = localPlayer.Character
     if not character or not character:FindFirstChild("HumanoidRootPart") then
-        if haloEnabled then
-            for _, seg in ipairs(ringParts) do seg.Position = Vector3.new(0, -100, 0) end
+        -- Si el halo está activo pero no hay personaje, ocultar
+        if haloEnabled and not parryEnabled then
+            for _, seg in ipairs(ringParts) do
+                seg.Position = Vector3.new(0, -1000, 0)
+            end
         end
+        pcall(function()
+            for _, visuals in pairs(espContainers) do
+                if visuals.Box then visuals.Box.Visible = false end
+                if visuals.Name then visuals.Name.Visible = false end
+                if visuals.Info then visuals.Info.Visible = false end
+            end
+        end)
         return
     end
     
@@ -581,47 +802,61 @@ RunService.Heartbeat:Connect(function(heartbeatDt)
     local hrpPos = hrp.Position
     local dt = math.max(heartbeatDt, 1/240)
     
-    -- UPDATE ESP
-    if espBoxEnabled or espNameEnabled or espDistEnabled then
-        for p, visuals in pairs(espContainers) do
-            local pChar = p.Character
-            local pRoot = pChar and pChar:FindFirstChild("HumanoidRootPart")
-            local pHead = pChar and pChar:FindFirstChild("Head")
-            
-            if pRoot and pHead then
-                local headPos, headVis = camera:WorldToViewportPoint(pHead.Position + Vector3.new(0, 0.8, 0))
-                local footPos, footVis = camera:WorldToViewportPoint(pRoot.Position - Vector3.new(0, 3.1, 0))
+    -- ESP UPDATE con anti-BAC
+    if frameCounter % 2 == 0 or math.random() > 0.7 then
+        pcall(function()
+            for p, visuals in pairs(espContainers) do
+                local pChar = p.Character
+                local pRoot = pChar and pChar:FindFirstChild("HumanoidRootPart")
+                local pHead = pChar and pChar:FindFirstChild("Head")
                 
-                if headVis or footVis then
-                    local height = math.abs(footPos.Y - headPos.Y)
-                    local width = height * 0.6
-                    local posX = headPos.X - (width / 2)
-                    local posY = headPos.Y
+                if pRoot and pHead then
+                    local headPos, headVis = camera:WorldToViewportPoint(pHead.Position + Vector3.new(0, 0.8, 0))
+                    local footPos, footVis = camera:WorldToViewportPoint(pRoot.Position - Vector3.new(0, 3.1, 0))
                     
-                    if visuals.Box then
-                        visuals.Box.Visible = espBoxEnabled
-                        if espBoxEnabled then
+                    if headVis or footVis then
+                        local height = math.abs(footPos.Y - headPos.Y)
+                        local width = height * 0.6
+                        local posX = headPos.X - (width / 2)
+                        local posY = headPos.Y
+                        
+                        if visuals.Box and espBoxEnabled then
+                            visuals.Box.Visible = true
                             visuals.Box.Position = UDim2.new(0, posX, 0, posY)
                             visuals.Box.Size = UDim2.new(0, width, 0, height)
+                        else
+                            if visuals.Box then visuals.Box.Visible = false end
                         end
-                    end
-                    
-                    local textOffsetY = posY - 18
-                    if visuals.Name then
-                        visuals.Name.Visible = espNameEnabled
-                        if espNameEnabled then
+                        
+                        local textOffsetY = posY - 18
+                        
+                        if visuals.Name and espNameEnabled then
+                            visuals.Name.Visible = true
                             visuals.Name.Text = p.Name
                             visuals.Name.Position = UDim2.new(0, headPos.X, 0, textOffsetY)
                             textOffsetY = textOffsetY - 15
+                        else
+                            if visuals.Name then visuals.Name.Visible = false end
                         end
-                    end
-                    
-                    if visuals.Info then
-                        visuals.Info.Visible = espDistEnabled
+                        
+                        local infoString = ""
+                        local studsDist = math.floor((hrpPos - pRoot.Position).Magnitude)
+                        
                         if espDistEnabled then
-                            visuals.Info.Text = "[" .. math.floor((hrpPos - pRoot.Position).Magnitude) .. " studs]"
-                            visuals.Info.Position = UDim2.new(0, headPos.X, 0, textOffsetY)
+                            infoString = "[" .. studsDist .. " studs]"
                         end
+                        
+                        if visuals.Info and espDistEnabled and infoString ~= "" then
+                            visuals.Info.Visible = true
+                            visuals.Info.Text = infoString
+                            visuals.Info.Position = UDim2.new(0, headPos.X, 0, textOffsetY)
+                        else
+                            if visuals.Info then visuals.Info.Visible = false end
+                        end
+                    else
+                        if visuals.Box then visuals.Box.Visible = false end
+                        if visuals.Name then visuals.Name.Visible = false end
+                        if visuals.Info then visuals.Info.Visible = false end
                     end
                 else
                     if visuals.Box then visuals.Box.Visible = false end
@@ -629,17 +864,19 @@ RunService.Heartbeat:Connect(function(heartbeatDt)
                     if visuals.Info then visuals.Info.Visible = false end
                 end
             end
+        end)
+    end
+    
+    -- CLASH SPAM con anti-BAC
+    if clashEnabled and UserInputService:IsKeyDown(Enum.KeyCode.T) then
+        if frameCounter % math.random(3, 8) == 0 then
+            queueParry("clash_" .. tostring(os.clock()))
         end
     end
     
-    -- CLASH SPAM
-    if clashEnabled and UserInputService:IsKeyDown(Enum.KeyCode.T) then
-        executeParry()
-    end
-    
-    -- ALGORITMO AUTO PARRY ORIGINAL
-    if parryEnabled or haloEnabled then
-        local balls = workspace:FindFirstChild("Balls")
+    -- AUTO PARRY (mantenido igual)
+    if parryEnabled then
+        local balls = Workspace:FindFirstChild("Balls")
         local imminentHaloRadius = 15
         
         if balls then
@@ -662,6 +899,11 @@ RunService.Heartbeat:Connect(function(heartbeatDt)
                             lastParryTime = 0,
                         }
                         ballStates[ball] = state
+                    end
+                    
+                    if not ball.Parent then
+                        ballStates[ball] = nil
+                        break
                     end
                     
                     local accelEstimation = (velocity - state.lastVelocity) / dt
@@ -753,12 +995,29 @@ RunService.Heartbeat:Connect(function(heartbeatDt)
                         end
                     end
                     
-                    -- PARRY TRIGGER
+                    -- PARRY LOGIC
                     if parryEnabled and currentTarget == localPlayer.Name and not state.parriedThisTarget then
                         if triggeredThisFrame then
-                            executeParry()
-                            state.parriedThisTarget = true
-                            state.lastParryTime = os.clock()
+                            local eventKey = math.floor(evaluatedTTI * 100) .. "_" .. math.floor(distance3D)
+                            local eventProcessed = false
+                            for _, ev in ipairs(state.processedEvents) do
+                                if ev == eventKey then
+                                    eventProcessed = true
+                                    break
+                                end
+                            end
+                            
+                            if not eventProcessed then
+                                local success = queueParry(tostring(ball))
+                                if success then
+                                    table.insert(state.processedEvents, eventKey)
+                                    if #state.processedEvents > 5 then
+                                        table.remove(state.processedEvents, 1)
+                                    end
+                                    state.parriedThisTarget = true
+                                    state.lastParryTime = os.clock()
+                                end
+                            end
                         end
                     end
                     
@@ -768,20 +1027,14 @@ RunService.Heartbeat:Connect(function(heartbeatDt)
             end
         end
         
-        -- SAFE CLEANUP
-        for ballRef, _ in pairs(ballStates) do
-            local isAlive = false
-            pcall(function()
-                if ballRef and typeof(ballRef) == "Instance" and ballRef.Parent then
-                    isAlive = true
-                end
-            end)
-            if not isAlive then
+        -- Limpiar estados de bolas eliminadas
+        for ballRef, state in pairs(ballStates) do
+            if not ballRef or not ballRef.Parent or ballRef.Parent ~= balls then
                 ballStates[ballRef] = nil
             end
         end
         
-        -- HALO VISUAL INTACTO
+        -- ACTUALIZAR HALO VISUAL (cuando autoparry está activo)
         if haloEnabled then
             local centerPos = Vector3.new(hrpPos.X, hrpPos.Y - 2.6, hrpPos.Z)
             for i, seg in ipairs(ringParts) do
